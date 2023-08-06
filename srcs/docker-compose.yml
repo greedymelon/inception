@@ -1,0 +1,58 @@
+version: "3.8"
+
+services:
+  nginx:
+    container_name: nginx
+    env_file: ./src/env
+    build:
+      context: srcs/requirement/nginx
+      dockerfile: dockerfile
+      restart: always
+    image: nginx:nginx
+    volumes:
+      - wordpress:/mywebside
+    networks:
+      - "docker-network"
+    ports:
+      - '430:430'
+
+  wordpress:
+    container_name: wordpress
+    env_file: ./src/env
+    build:
+      context: srcs/requirement/wordpress
+      dockerfile: dockerfile
+      restart: always
+    image: wordpress:wordpress
+    volumes:
+      - wordpress:/wordpress/var/www/html/
+    networks:
+      - "docker-network"
+    depends_on: mariadb
+
+  mariadb:
+    container_name: mariadb
+    env_file: ./src/env
+    build:
+      context: srcs/requirement/mariadb
+      dockerfile: dockerfile
+      restart: always
+    image: mariadb:mariadb
+    working_dir: /app
+    networks:
+      - "docker-network"
+    depends_on:
+      - nginx
+
+networks:
+  docker-network:
+    driver: custom-driver-1
+
+volumes:
+  wordpress:
+    type: "bind"
+    source: "/home/dmonfrin/data/wordpress"
+  db:
+    type: "bind"
+    source: "/home/dmonfrin/data/db"
+   
