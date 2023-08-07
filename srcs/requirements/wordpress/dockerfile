@@ -2,7 +2,8 @@ FROM debian:bullseye
 
 RUN apt update && apt upgrade -y
 
-RUN apt install php-cgi
+RUN apt install php-fpm
+
 RUN apt install php
 RUN wget http://wordpress.org/latest.tar.gz
 RUN xfz latest.tar.gz 

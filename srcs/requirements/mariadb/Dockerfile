@@ -4,32 +4,40 @@ RUN apt update && apt upgrade -y
 
 RUN apt install mariadb-server -y
 
-RUN service mariadb start
 
-# RUN mysql -e "UPDATE mysql.user SET Password = PASSWORD('$ROOT_PASS') WHERE User = 'root'"
+COPY ./tools/db.sh .
 
-RUN mysql -e "DROP USER IF EXISTS ''@'$(hostname)'"
+RUN  bash db.sh
 
-RUN mysql -e "CREATE DATABASE IF NOT EXISTS wordpress DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;"
+# CMD [ "bash", "db.sh" ]
 
-RUN 
+#RUN mariadb -h  127.0.0.1
+#RUN mariadb
 
 
-# CMD [ "cat", "./etc/mysql/mariadb.cnf"]
+
+#RUN mysql -e "DROP USER IF EXISTS ''@'hostname'"
+
+#RUN mysql -e "CREATE DATABASE IF NOT EXISTS wordpress DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;"
+
+#CMD [ "ls", "-a", "./etc/mysql/mariadb.conf.d"]
+#CMD [ "cat", "../etc/mysql/mariadb.conf.d/"]
 
 # RUN mariadb -u wp_user -ppassword wordpress
 
-CMD ["service", "--status-all"]
+# CMD ["service", "--status-all"]
+
+# CMD [""]
 
 # RUN mysql -u root
 #
 
-# RUN CREATE USER 'wp_pwuser'@'localhost' IDENTIFIED BY 'password';
+# RUN mysql -e "CREATE USER ${ADMIN_NAME}@'localhost' IDENTIFIED BY ${ADMIN_PASS};"
 
-# RUN GRANT ALL ON wordpress.* TO 'wp_pwuser'@'localhost';
+# RUN mysql -e "GRANT ALL ON wordpress.* TO ${ADMIN_NAME}@'localhost';"
 
-# RUN CREATE USER 'wp_user'@'localhost' IDENTIFIED BY 'password';
+# RUN mysql -e "CREATE USER $(USER_NAME)'@'localhost' IDENTIFIED BY ${ADMIN_PASS};"
 
-# RUN FLUSH PRIVILEGES;
+# RUN mysql -e "FLUSH PRIVILEGES;"
 
 # RUN EXIT

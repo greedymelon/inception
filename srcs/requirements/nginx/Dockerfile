@@ -12,6 +12,7 @@ EXPOSE 433
 
 COPY ./conf/nginx.conf ./etc/nginx/nginx.conf
 
+
 CMD ["nginx", "-g", "daemon off;"]
 
 # FROM alpine:3.14
