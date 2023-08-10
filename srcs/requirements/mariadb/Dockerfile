@@ -7,9 +7,10 @@ RUN apt install mariadb-server -y
 
 COPY ./tools/db.sh .
 
-RUN  bash db.sh
+# RUN  bash db.sh
 
-# CMD [ "bash", "db.sh" ]
+# RUN rm db.sh
+CMD [ "bash", "db.sh"]
 
 #RUN mariadb -h  127.0.0.1
 #RUN mariadb

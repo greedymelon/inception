@@ -3,16 +3,16 @@ version: "3.8"
 services:
   nginx:
     container_name: nginx
-    env_file: ../.env
+    env_file: .env
     build:
       context: requirements/nginx
       dockerfile: Dockerfile
     image: nginx:nginx
+    volumes:
+    - "/home/dmonfrin/data/wordpress:/var/www/html/"
     deploy:
       restart_policy:
         condition: any
-    # volumes:
-    #   - wordpress:/mywebside
     networks:
       - "docker-network"
     ports:
@@ -20,7 +20,7 @@ services:
 
   wordpress:
     container_name: wordpress
-    env_file: ../.env
+    env_file: .env
     build:
       context: requirements/wordpress
       dockerfile: Dockerfile
@@ -28,6 +28,11 @@ services:
     deploy:
       restart_policy:
         condition: any
+    volumes:
+    - "/home/dmonfrin/data/wordpress:/var/www/html/"
+    # - type: bind
+    #   source: "/home/dmonfrin/data/db"
+    #   target : "/var/lib/mysql""
     # volumes:
     #   - wordpress:/wordpress/var/www/html/
     networks:
@@ -37,7 +42,9 @@ services:
 
   mariadb:
     container_name: mariadb
-    env_file:  ../.env
+    env_file:  .env
+    tty: true
+    stdin_open: true
     build:
       context: requirements/mariadb
       dockerfile: Dockerfile
@@ -45,13 +52,8 @@ services:
     deploy:
       restart_policy:
         condition: any
-    # volumes:
-    # - type: bind
-    #   source: "/home/dmonfrin/data/db"
-    #   target : "/var/lib/mysql"
-
-
-
+    volumes:
+    - "/home/dmonfrin/data/database:/var/lib/mysql"
     networks:
       - "docker-network"
     depends_on:
@@ -59,13 +61,14 @@ services:
 
 networks:
   docker-network:
+    driver: bridge
 
 
 # volumes:
-#   wordpress:
+#   WordPress:
 #     type: "bind"
 #     source: "/home/dmonfrin/data/wordpress"
-#   db:
+#   DB:
 #     type: "bind"
 #     source: 
    

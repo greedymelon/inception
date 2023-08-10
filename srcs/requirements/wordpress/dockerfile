@@ -2,8 +2,22 @@ FROM debian:bullseye
 
 RUN apt update && apt upgrade -y
 
-RUN apt install php-fpm
+RUN apt install -y php-cgi php-common php-fpm php-mbstring php-zip php-net-socket php-gd php-mysql php-bcmath
 
-RUN apt install php
-RUN wget http://wordpress.org/latest.tar.gz
-RUN xfz latest.tar.gz 
+#RUN apt install php -y
+
+RUN apt install wget -y
+
+# RUN apt install xfz -y
+COPY ./conf/wp-config.php .
+
+RUN if [! -d "./var/www/html/wordpress" ]; then wget http://wordpress.org/latest.tar.gz \
+    && tar -xvzf latest.tar.gz && mv wordpress ./var/www/html/ \
+    && mv wp-config.php ./var/www/html/wordpress \ 
+    && chown -R www-data:www-data /var/www/html/wordpress; fi
+
+ RUN service php7.4-fpm start
+ 
+ #CMD [ "php7.4-fpm", "-F", "-R" ]
+
+ #CMD [ "service", "php7.4-fpm", "start", "&&", "php7.4-fpm", "-F", "-R" ]
