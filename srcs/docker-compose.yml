@@ -8,15 +8,16 @@ services:
       context: requirements/nginx
       dockerfile: Dockerfile
     image: nginx:nginx
+    stdin_open: true
     volumes:
-    - "/home/dmonfrin/data/wordpress:/var/www/html/"
-    deploy:
-      restart_policy:
-        condition: any
+    - "../home/dmonfrin/data/wordpress:/var/www/html/"
+    restart: always
     networks:
       - "docker-network"
     ports:
       - '430:430'
+    depends_on:
+    - wordpress
 
   wordpress:
     container_name: wordpress
@@ -25,16 +26,10 @@ services:
       context: requirements/wordpress
       dockerfile: Dockerfile
     image: wordpress:wordpress
-    deploy:
-      restart_policy:
-        condition: any
+    restart: always
     volumes:
-    - "/home/dmonfrin/data/wordpress:/var/www/html/"
-    # - type: bind
-    #   source: "/home/dmonfrin/data/db"
-    #   target : "/var/lib/mysql""
-    # volumes:
-    #   - wordpress:/wordpress/var/www/html/
+    - "../home/dmonfrin/data/wordpress:/var/www/html/"
+    stdin_open: true
     networks:
       - "docker-network"
     depends_on: 
@@ -49,15 +44,11 @@ services:
       context: requirements/mariadb
       dockerfile: Dockerfile
     image: mariadb:mariadb
-    deploy:
-      restart_policy:
-        condition: any
+    restart: always
     volumes:
-    - "/home/dmonfrin/data/database:/var/lib/mysql"
+    - "../home/dmonfrin/data/database:/var/lib/mysql"
     networks:
       - "docker-network"
-    depends_on:
-      - nginx
 
 networks:
   docker-network:
@@ -71,4 +62,8 @@ networks:
 #   DB:
 #     type: "bind"
 #     source: 
-   
+
+
+listen = /run/php/php7.4-fpm.sock
+
+sed 's/listen = /run/php/php7.4-fpm.sock/Listen 127.0.0.1:9000/g' 
