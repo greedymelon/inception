@@ -10,6 +10,8 @@ RUN apt install wget -y
 
 # RUN apt install xfz -y
 COPY ./conf/wp-config.php .
+
+RUN sed 's+listen+listen = wordpress:9000+g' ./etc/php/7.4/fpm/pool.d/www.conf
 COPY ./conf/www.conf ./etc/php/7.4/fpm/pool.d/www.conf
 
 COPY ./tools/wordpress.sh .
@@ -21,7 +23,7 @@ RUN mkdir -p ./run/php
 #RUN bash wordpress.sh
 
 #CMD [ "sistem", "" ]
-CMD [ "bash", "wordpress.sh" ]
+#CMD [ "bash", "wordpress.sh" ]
 
  #RUN service php7.4-fpm start
  

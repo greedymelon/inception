@@ -28,7 +28,7 @@ services:
     image: wordpress:wordpress
     restart: always
     volumes:
-    - "../home/dmonfrin/data/wordpress:/var/www/html/"
+    - "/Users/dmonfrin/Desktop/inception/home/dmonfrin/data/wordpress/:/var/www/html/"
     stdin_open: true
     networks:
       - "docker-network"
@@ -62,8 +62,3 @@ networks:
 #   DB:
 #     type: "bind"
 #     source: 
-
-
-listen = /run/php/php7.4-fpm.sock
-
-sed 's/listen = /run/php/php7.4-fpm.sock/Listen 127.0.0.1:9000/g' 

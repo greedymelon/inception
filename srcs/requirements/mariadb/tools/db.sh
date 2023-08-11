@@ -13,10 +13,11 @@ service mariadb start #
 # mysql -e "DELETE FROM mysql.db WHERE Db='test' OR Db='test\\_%'" #
 # Make our changes take effect
 # mysql -e "FLUSH PRIVILEGES" #
-#service mariadb status #
+#service mariadb restart #
 mysql -uroot -e "CREATE DATABASE IF NOT EXISTS wordpress DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;" #
-mysql -uroot -e "CREATE USER IF NOT EXIST ${ADMIN_NAME}@'%' IDENTIFIED BY ${ADMIN_PASS};" #
-mysql -uroot -e "GRANT ALL ON wordpress.* TO ${ADMIN_NAME}@'%';" #
+mysql -uroot -e "CREATE USER IF NOT EXISTS ${ADMIN_NAME}@'mariadb' IDENTIFIED BY ${ADMIN_PASS};" #
+mysql -uroot -e "GRANT ALL ON wordpress.* TO ${ADMIN_NAME}@'mariadb';" #
 mysql -uroot -e "FLUSH PRIVILEGES;" #
-mariadb #
+#mysql -P 3306 -h mariadb #
+mariadb
 # mysql -uroot -h 127.0.0.1 -P 3306 #

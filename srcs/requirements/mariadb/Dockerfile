@@ -4,6 +4,7 @@ RUN apt update && apt upgrade -y
 
 RUN apt install mariadb-server -y
 
+COPY conf/my.cnf /etc/mysql/
 
 COPY ./tools/db.sh .
 
