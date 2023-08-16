@@ -1,12 +1,13 @@
-if ! [[ -d "./var/www/html/wordpress" ]]; then 
-wget http://wordpress.org/latest.tar.gz
-tar -xvzf latest.tar.gz && mv wordpress ./var/www/html/
-mv wp-config.php ./var/www/html/wordpress 
+#!/bin/bash
+
+#if not wordpre in the bind mount
+if ! [[ "$(ls -A /var/www/html/)" ]]; then
+#download, configure the wordpress in the bind mount
+wp core download --allow-root --locale=nl_NL
+wp core install --allow-root --url=$DOMAIN_NAME --title=Inception --admin_user=$ADMIN_NAME --admin_password=$ADMIN_PASS --admin_email=$ADMIN_EMAIL
+wp wp config create --allow-root --dbname=$DATAB_NAME --dbuser=$USERDB_NAME --dbpass=$USERDB_PASS --dbhost=mariadb
 fi
 
-chown -R www-data:www-data /var/www/html/wordpress
-
-php-fpm7.4 -R -F
-
-#service php7.4-fpm restart
-
+#give right to php
+chown -R www-data:www-data /var/www/html/
+chmod -R 775 /var/www/html/
