@@ -1,23 +1,30 @@
 #!/bin/bash
-# chmod -R 755 /var/lib/mysql/ #
-service mariadb start #
-# mariadb -h 127.0.0.11 --port=3306 --protocol=tcp #
-# mysql -h 127.0.0.1 -P 3306 --protocol=TCP -u root -p${ROOT_PASS}
-# mysql -e "UPDATE mysql.user SET Password=PASSWORD('$ROOT_PASS') WHERE User='root';" #
-# Kill the anonymous users
-# mysql -e "DELETE FROM mysql.user WHERE User='';" #
-# Because our hostname varies we'll use some Bash magic here.
-# mysql -e "DELETE FROM mysql.user WHERE User='root' AND Host NOT IN ('localhost', '127.0.0.1', '::1');" #
-# Kill off the demo database
-# mysql -e "DROP DATABASE test" #
-# mysql -e "DELETE FROM mysql.db WHERE Db='test' OR Db='test\\_%'" #
-# Make our changes take effect
-# mysql -e "FLUSH PRIVILEGES" #
-#service mariadb restart #
-mysql -uroot -e "CREATE DATABASE IF NOT EXISTS wordpress DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;" #
-mysql -uroot -e "CREATE USER IF NOT EXISTS ${ADMIN_NAME}@'mariadb' IDENTIFIED BY ${ADMIN_PASS};" #
-mysql -uroot -e "GRANT ALL ON wordpress.* TO ${ADMIN_NAME}@'mariadb';" #
-mysql -uroot -e "FLUSH PRIVILEGES;" #
-#mysql -P 3306 -h mariadb #
-mariadb
-# mysql -uroot -h 127.0.0.1 -P 3306 #
+
+# if the database is not in the binf mount create it
+if ! [[ "$(ls -A /var/lib/mysql)" ]]; then
+    chown -R mysql:mysql /var/lib/mysql
+    chmod -R 755 /var/lib/mysql/
+    # installing a database in a specific diretory needed because of the bind mount
+    mariadb-install-db --datadir=/var/lib/mysql --basedir=/usr
+    service mariadb start
+    sleep 4
+
+    # faking myysql_secure_installation.sh
+    mariadb -uroot -e "ALTER USER 'root'@'localhost' IDENTIFIED BY '$MYSQL_ROOT_PASSWORD';"
+    mariadb -uroot --password=$MYSQL_ROOT_PASSWORD -e "DELETE FROM mysql.user WHERE User='';"
+    mariadb -uroot --password=$MYSQL_ROOT_PASSWORD -e "DELETE FROM mysql.user WHERE User='root' AND Host NOT IN ('localhost', '127.0.0.1', '::1');"
+    mariadb -uroot --password=$MYSQL_ROOT_PASSWORD -e "DROP DATABASE test;"
+    mariadb -uroot --password=$MYSQL_ROOT_PASSWORD -e "FLUSH PRIVILEGES;"
+    mariadb -uroot --password=$MYSQL_ROOT_PASSWORD -e "CREATE DATABASE IF NOT EXISTS $DATAB_NAME;"
+
+    #creat users and wordpress database
+    mariadb -uroot --password=$MYSQL_ROOT_PASSWORD -e "CREATE USER IF NOT EXISTS '$USERDB_NAME'@'%' IDENTIFIED BY '$USERDB_PASS';"
+    mariadb -uroot --password=$MYSQL_ROOT_PASSWORD -e "GRANT ALL PRIVILEGES ON $DATAB_NAME.* TO '$USERDB_NAME'@'%';"
+    mariadb -uroot --password=$MYSQL_ROOT_PASSWORD -e "GRANT ALL PRIVILEGES ON * . * TO 'root'@'localhost' IDENTIFIED BY '$ROOT_PASS';"
+    mariadb -uroot --password=$MYSQL_ROOT_PASSWORD -e "CREATE USER IF NOT EXISTS '$NOPOW_NAME'@'%' IDENTIFIED BY '$NOPOW_PASS';"
+    mariadb -uroot --password=$MYSQL_ROOT_PASSWORD -e "GRANT ALTER PRIVILEGES ON $DATAB_NAME.* TO '$NOPOW_NAME'@'%';"
+    mariadb -uroot --password=$MYSQL_ROOT_PASSWORD -e "FLUSH PRIVILEGES;"
+
+else
+    service mariadb start
+fi
