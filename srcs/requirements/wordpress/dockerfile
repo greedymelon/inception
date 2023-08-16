@@ -1,32 +1,26 @@
 FROM debian:bullseye
 
-RUN apt update && apt upgrade -y
+RUN apt update && apt upgrade -y && apt install -y \
+    php-cgi \
+    php-common \
+    php-fpm \
+    php-mysql\
+    curl \
+    && curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar \ 
+    && chmod +x wp-cli.phar && mv wp-cli.phar /usr/local/bin/wp \
+    && sed -i "s+listen = /run/php/php7.4-fpm.sock+listen = wordpress:9000+g" /etc/php/7.4/fpm/pool.d/www.conf \
+    && mkdir -p ./run/php
 
-RUN apt install -y php-cgi php-common php-fpm php-mbstring php-zip php-net-socket php-gd php-mysql php-bcmath
+# debugging
+# RUN sed -i "s+display_errors = Off+display_errors = On+g" /etc/php/7.4/fpm/php.ini \
+#     sed -i "s+display_startup_errors = Off+display_startup_errors = On+g" /etc/php/7.4/fpm/php.ini
 
-#RUN apt install php -y
 
-RUN apt install wget -y
+COPY ./tools/wordpress.sh /tmp/
 
-# RUN apt install xfz -y
-COPY ./conf/wp-config.php .
+WORKDIR /var/www/html
 
-RUN sed 's+listen+listen = wordpress:9000+g' ./etc/php/7.4/fpm/pool.d/www.conf
-COPY ./conf/www.conf ./etc/php/7.4/fpm/pool.d/www.conf
+CMD [ "bash", "/tmp/wordpress.sh"]
 
-COPY ./tools/wordpress.sh .
-
-RUN mkdir -p ./run/php
-
-# RUN mkdir /var/www && mkdir /var/www/html
-
-#RUN bash wordpress.sh
-
-#CMD [ "sistem", "" ]
-#CMD [ "bash", "wordpress.sh" ]
-
- #RUN service php7.4-fpm start
- 
- #CMD [ "php7.4-fpm", "-F", "-R" ]
-
- #CMD [ "service", "php7.4-fpm", "start", "&&", "php7.4-fpm", "-F", "-R" ]
+# run php-fpm int the foreground
+ENTRYPOINT [ "php-fpm7.4", "-R", "-F" ]
