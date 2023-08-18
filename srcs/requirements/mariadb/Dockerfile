@@ -7,6 +7,6 @@ RUN apt update && apt upgrade -y && apt install -y \
 
 COPY ./tools/database.sh .
 
-CMD [ "bash", "database.sh"]
+ENTRYPOINT [ "bash", "database.sh"]
 
-ENTRYPOINT [ "mariadb" ]
+CMD [ "mariadbd-safe" ]
