@@ -20,7 +20,7 @@ COPY ./tools/wordpress.sh /tmp/
 
 WORKDIR /var/www/html
 
-CMD [ "bash", "/tmp/wordpress.sh"]
+ENTRYPOINT [ "bash", "/tmp/wordpress.sh"]
 
 # run php-fpm int the foreground
-ENTRYPOINT [ "php-fpm7.4", "-R", "-F" ]
+CMD [ "php-fpm7.4", "-R", "-F" ]
