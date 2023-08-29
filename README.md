@@ -15,7 +15,7 @@ this project aims to teach about docker and docker compose
 
 **What is a container**<br>
 A container has per is name cointain all we need to run our application, it solves for exemple one of the famous meme
-<img src="https://github.com/Squidtyper/inception/images/cub3Dshow.gif" width="250" height="250"/><br>
+<img src="https://github.com/greedymelon/inception/images/memes.jpeg" width="250" height="250"/><br>
 It's portable light and fast
 
 **Defferece between a container and a virtual machine**<br>
