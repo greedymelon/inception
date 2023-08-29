@@ -29,6 +29,10 @@ The bridge network that act as a switch.
 Docker has a default brige network in which container are automatically connected to: use it is bad practice because we want isolation between applications or containers in an application. The best practice is to create our own bridge network (docker network create 'NAME') and connect our container when we run it to it (--network 'NAME') with creating our own network also comes with other avantages: it create a DSN with the name of the container, in this way container in the same network can comunicate with each other throw their name, we can attached and detached containers from the network when we want, and some other.s
 Port forwarding with the flag -p we can specify a port open to the outside world (-p 80:80) the default option is TCP
 
+**what is PID1 and a daemon** <br>
+PID1 is the process assosieted to the container, we want it to remain the main process bacause is the one in which signal are sent, if we run bash in a container for example, all the signal send to the container will be ignore the commun way. To solve this problem when we run a bash script as an ENTRYPOINT is to use execve at the of it so it will start the new process as PID1 and run the actual service with CMD so we will need to add at the end of our script 'exec "$@"' where $@ is the commandline argument in our case what is in CMD. 
+A daemon is simply a process who runs in the background, to mantain a container alive we need to have a programm running on the foreground, there are two ways to do so: running a service that remain in foregraund or to turn off a daemon mode of our service. Some tricks like running bash (CMD ["BASH"]) ot tail are not a good practice.
+
 ## **How to run**
 clone this repository in your computer
 ```
