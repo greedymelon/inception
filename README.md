@@ -24,7 +24,10 @@ The main difference is that the container use the Kernel of the hostmachine that
 An image is a blueprint, from it we can create multiple containers. We can run a image teken from the dockerhub, We can use a Dockerfile to create our own image (starting FROM scratch) or most commonly personalize an existing one to create our own.
 
 **How the network between containers and host work** <br>
-When we use the docker host network (bad practice) or we crate our own bridge network docker create a DSN in which container on the same network can comunicate to each other through the container name instead of the address, if we want our container to comunicate with the host machine we can just open a port with the plag -p
+There are different types of networking that we can use with docker, in this project we use just 2 of them
+The bridge network that act as a switch.
+Docker has a default brige network in which container are automatically connected to: use it is bad practice because we want isolation between applications or containers in an application. The best practice is to create our own bridge network (docker network create 'NAME') and connect our container when we run it to it (--network 'NAME') with creating our own network also comes with other avantages: it create a DSN with the name of the container, in this way container in the same network can comunicate with each other throw their name, we can attached and detached containers from the network when we want, and some other.s
+Port forwarding with the flag -p we can specify a port open to the outside world (-p 80:80) the default option is TCP
 
 ## **How to run**
 clone this repository in your computer
