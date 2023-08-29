@@ -13,18 +13,18 @@ this project aims to teach about docker and docker compose
 - what is docker compose and how to orcestrate container
 - bests practice to write a Dockerfile
 
-**What is a container**<br>
-A container has per is name cointain all we need to run our application, it solves for exemple one of the famous meme
+**What is a container** <br>
+A container as per its name cointain all we need, to run our application, it solves for exemple one of the problem in this famous meme
 <img src="https://github.com/greedymelon/inception/blob/main/images/memes.jpeg" height="250"/><br>
-It's portable light and fast
 
-**Defferece between a container and a virtual machine**<br>
-The main difference is that the container use the Kernel of the host machine that is why is so light and fast, you skip a big parte of the process. Both can be isolated from the hostmachine and configure to use a specific amount of resurces.
+**Defferece between a container and a virtual machine** <br>
+The main difference is that the container use the Kernel of the hostmachine that is why is so light and fast, you skip a big parte of the process. Both can be isolated from the hostmachine and configure to use a specific amount of resurces.
 
-**What is a image?**<br>
-An image is a blue print of our container, from it we can create multiple containers. We can run a image takan fromfrom the dockerhub, We can use a Dockerfile to create our own image (starting FROM scratch) or most commonly personalize an existing one to create our own.
+**What is a image?** <br>
+An image is a blueprint, from it we can create multiple containers. We can run a image teken from the dockerhub, We can use a Dockerfile to create our own image (starting FROM scratch) or most commonly personalize an existing one to create our own.
 
 **How the network between containers and host work** <br>
+When we use the docker host network (bad practice) or we crate our own bridge network docker create a DSN in which container on the same network can comunicate to each other through the container name instead of the address, if we want our container to comunicate with the host machine we can just open a port with the plag -p
 
 ## **How to run**
 clone this repository in your computer
