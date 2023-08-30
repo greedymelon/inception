@@ -36,7 +36,7 @@ A daemon is simply a process who runs in the background, to mantain a container 
 
 **what are volume and bind mounts** <br>
 Volumes are storage space in which the content is hidden from the hostmachine and are available only inside docker, so you cannot see the content from the outside. They are independent from the container they are bind with so if the container is dystroid the data inside it remain available to docker until specifically deleted (docker volume rm 'NAME'). A volume can be share by different containers. To make a volume avaiable to a container we have to decide in which folder is going to be connected es -v VolumeName:/var/folder. <br>
-Bind mounts are just folder or file that are bind to the hostmachine's folder or file, when you change a file on you hostmachine is right away avaible to the container and viceversq. There are some challenges if you are using a windows hostmachine, in this project I created a workaround to be able to use a folder on windows as a database (not a good practice), the best practice would be using a folder that is inside Wsl filesystem
+Bind mounts are just folder or file that are bind to the hostmachine's folder or file, when you change a file on you hostmachine is right away avaible to the container and viceversa.
 
 ## **How to run**
 clone this repository in your computer
