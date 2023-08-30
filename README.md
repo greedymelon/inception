@@ -10,6 +10,7 @@ this project aims to teach about docker and docker compose
 - What is an image?
 - How the network between containers and host works
 - what is PID1 and a daemon
+- what are volume and bind mount
 - what is docker compose and how to orcestrate container
 - bests practice to write a Dockerfile
 
