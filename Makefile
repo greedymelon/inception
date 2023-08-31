@@ -1,5 +1,5 @@
 SRCS=./srcs
-BINDM=/home/dmonfrin/data
+BINDM=/your/folder/path
 RM= rm -r -f
 all: create build
 	
