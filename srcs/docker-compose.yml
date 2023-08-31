@@ -61,12 +61,12 @@ volumes:
     name: wordpress
     driver_opts:
       o: bind
-      device: $DIR_PATH/wordpress/
+      device: $PATH/wordpress/
       type: none
   db:
     driver: local
     name: db
     driver_opts:
       o: bind
-      device: $DB_DIR_PATH/database/
+      device: $PATH/database/
       type: none
