@@ -6,15 +6,15 @@ this project aims to teach about docker and docker compose
 
 ## **Learning-points**
 - Understand what is a container
-- Defferece between a container and a virtual machine
+- The defference between a container and a virtual machine
 - What is an image?
-- How the network between containers and host works
-- what is PID1 and a daemon
-- what are volumes and bind mounts
-- what is docker compose and how to orcestrate container
-- bests practice to write a Dockerfile
+- How the network between containers and host works?
+- What is PID1 and a daemon?
+- What are volumes and bind mounts?
+- What is docker compose?
+- Best practices to write a Dockerfile
 
-**What is a container** <br>
+**What is a container?** <br>
 A container as per its name cointain all we need, to run our application, it solves for exemple one of the problem in this famous meme
 <img src="https://github.com/greedymelon/inception/blob/main/images/memes.jpeg" height="250"/><br>
 
@@ -37,6 +37,11 @@ A daemon is simply a process who runs in the background, to mantain a container 
 **what are volume and bind mounts** <br>
 Volumes are storage space in which the content is hidden from the hostmachine and are available only inside docker, so you cannot see the content from the outside. They are independent from the container they are bind with so if the container is dystroid the data inside it remain available to docker until specifically deleted (docker volume rm 'NAME'). A volume can be share by different containers. To make a volume avaiable to a container we have to decide in which folder is going to be connected es -v VolumeName:/var/folder. <br>
 Bind mounts are just folder or file that are bind to the hostmachine's folder or file, when you change a file on you hostmachine is right away avaible to the container and viceversa.
+
+**What is docker compose?** <br>
+Docker compose is a tool that allow you to orchestarte containers. It uses a docker-compose.yml (or .yeml) file in which all the single part needed to run our application are all togheter, instead of creating a network and then connect our container (one at the time) to it everything is done automaticly. When we run a command of docker compose we need to specify which docker-compose.yml we are efering to or have it in the same directory: through docker compose we can see only thing related to our application, that is very handy when you have multiple apllication running at the same time. 
+
+**Best practices to write a Dockerfile**
 
 ## **How to run**
 clone this repository in your computer
