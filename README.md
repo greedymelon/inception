@@ -61,10 +61,10 @@ then we need to do some customizations:
 - change the PATH of our bind mount with the folder PATH in our machine.
     - In the docker-compose.yml and in the Makefile: modified "/your/folder/path" with the path of the folder
 - fill the .env file:<br>
-    change the values with your prefered one. Es: DATAB_NAME="Database_name" DATAB_NAME="WordPress"
+    change the values with your preferred one. Es: DATAB_NAME="Database_name" DATAB_NAME="WordPress"
 - in the nginx.conf modify "yourwebsite.com"
 - this project is meant to run on localhost, so to make it work correctly we have to add this line in the hosts file in our host machine
-  (substitute "yourwebsite.com" with you website name)
+  (substitute "yourwebsite.com" with your website's name)
     127.0.0.1  "yourwebsite.com"
   
 then ```make``` t0 build the images of the containers<br>
@@ -77,3 +77,7 @@ make up
 ````
 
 Now if we open our browser at our website name, we will find our WordPress website
+
+## **Troubleshooting**
+If you run this application on Windows remember to run the terminal (or the program you open this project with ex. VScode) as administrator. <br>
+Make sure that docker is running and is correctly install. <br>
