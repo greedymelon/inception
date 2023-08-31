@@ -15,7 +15,7 @@ this project aims to teach about docker and docker compose
 - Best practices to write a Dockerfile
 
 **What is a container?** <br>
-A container as per its name cointain all we need, to run our application, it solves for exemple one of the problem in this famous meme
+A container as per its name cointain all we need, to run our application, it solves for exemple one of the problem in this famous meme. <br>
 <img src="https://github.com/greedymelon/inception/blob/main/images/memes.jpeg" height="250"/><br>
 
 **Defferece between a container and a virtual machine** <br>
@@ -48,7 +48,7 @@ If we need to foword a port we should add EXPOSE with the numer of the port, thi
 Another thing that i find relevant is the WORKDIR that execute all the instruction appening after it in the directori we write after it, using cd create confusion.
 
 ## **Structur of this application**
-How you can see in the following image, in this project we created 3 different conteiner two volume (bind mount) a personalize bridge-network and just a single port open to the outside.
+How you can see in the following image, in this project we created 3 different conteiner two volume (bind mount) a personalize bridge-network and just a single port open to the outside.<br>
 <img src="https://github.com/greedymelon/inception/blob/main/images/structure.png" height="500" /><br>
 
 ## **How to run**
