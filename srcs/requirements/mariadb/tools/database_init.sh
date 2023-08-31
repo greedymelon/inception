@@ -1,23 +1,5 @@
 #!/bin/bash
 
-# if the database is not in the binf mount create it
-if ! [[ "$(ls -A /var/lib/mysql)" ]]; then
-    chown -R mysql:mysql /var/lib/mysql
-    chmod -R 755 /var/lib/mysql/
-    # installing a database in a specific diretory sometimes needed because of the bind mount
-    mariadb-install-db --datadir=/var/lib/mysql 
-    echo "MYSQL initialized"
-    service mariadb start
-    sleep 2
-     # faking myysql_secure_installation.sh
-    mariadb -uroot --password=$MYSQL_ROOT_PASSWORD -e "ALTER USER 'root'@'localhost' IDENTIFIED BY '$MYSQL_ROOT_PASSWORD';"
-    mariadb -uroot --password=$MYSQL_ROOT_PASSWORD -e "DELETE FROM mysql.user WHERE User='';"
-    mariadb -uroot --password=$MYSQL_ROOT_PASSWORD -e "DELETE FROM mysql.user WHERE User='root' AND Host NOT IN ('localhost', '127.0.0.1', '::1');"
-    mariadb -uroot --password=$MYSQL_ROOT_PASSWORD -e "DROP DATABASE test;"
-    mariadb -uroot --password=$MYSQL_ROOT_PASSWORD -e "FLUSH PRIVILEGES;"
-    mysqladmin -uroot --password=$MYSQL_ROOT_PASSWORD shutdown
-   
-fi 
 if ! [[ -d  "/var/lib/mysql/$DATAB_NAME" ]]; then
     #create users and wordpress database
     service mariadb start
