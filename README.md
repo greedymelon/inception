@@ -5,7 +5,7 @@ School project 12
 this project aims to teach about docker and docker compose
 
 ## **Learning-points**
-- Understand what is a container
+- What is a container?
 - The defferences between a container and a virtual machine
 - What is an image?
 - How does the network between containers and the host work?
