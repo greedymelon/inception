@@ -47,7 +47,7 @@ An image has layers and every time you use one of these instructions a new layer
 If we need to forward a port we should add EXPOSE with the port's number, this doesn't do anything (it doesn't open a port) but has a documentation purpose for whom can run our application.
 Another thing that I find relevant is the WORKDIR that execute all the instruction happening after it in the directory we choose: using cd create confusion. <br>
 
-## **Structur of this application**
+## **Structure of this application**
 As you can see in the following image, in this project, we had to create three different containers, two volumes (bind mount), a personalised bridge network and just a single port open to the outside.<br>
 <img src="https://github.com/greedymelon/inception/blob/main/images/structure.png" height="500" /><br>
 
@@ -64,10 +64,10 @@ then we need to do some customizations:
     change the values with your preferred one. Es: DATAB_NAME="Database_name" DATAB_NAME="WordPress"
 - in the nginx.conf modify "yourwebsite.com"
 - this project is meant to run on localhost, so to make it work correctly we have to add this line in the hosts file in our host machine <br>
-  (substitute "yourwebsite.com" with your website's name) <br>
+  (Substitute "yourwebsite.com" with your website's name) <br>
     127.0.0.1  "yourwebsite.com" <br><br>
 
-The Makefile is only meant for Mac and linux host machine, the instructions to run it on windows are at the end of this section. <br>
+The Makefile is only meant for Mac and Linux host machines, the instructions to run it on Windows are at the end of this section. <br>
 **Using the Makefile on Linux or Mac** <br>
 then ```make``` to build the images of the containers<br>
 ````
@@ -85,7 +85,7 @@ make down
 <br>
 
 
-**Without Makefile on windows:** <br>
+**Without Makefile on Windows:** <br>
 Move to the srcs directory and build the images<br>
 ````
 cd srcs; docker compose build
