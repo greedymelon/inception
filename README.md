@@ -67,7 +67,7 @@ then we need to do some customizations:
   (substitute "yourwebsite.com" with your website's name) <br>
     127.0.0.1  "yourwebsite.com" <br><br>
 
-The Makefile is meant only for Mac and linux host machine, the instruction to run it on windows are at the end of this section. <br>
+The Makefile is only meant for Mac and linux host machine, the instructions to run it on windows are at the end of this section. <br>
 Using the Makefile on Linux or Mac <br>
 then ```make``` to build the images of the containers<br>
 ````
