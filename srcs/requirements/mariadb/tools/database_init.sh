@@ -10,7 +10,7 @@ if ! [[ -d  "/var/lib/mysql/$DATAB_NAME" ]]; then
     mariadb -uroot --password=$MYSQL_ROOT_PASSWORD -e "GRANT ALL PRIVILEGES ON $DATAB_NAME.* TO '$USERDB_NAME'@'%';" 
     mariadb -uroot --password=$MYSQL_ROOT_PASSWORD -e "GRANT ALL PRIVILEGES ON * . * TO 'root'@'localhost' IDENTIFIED BY '$MYSQL_ROOT_PASSWORD';" 
     mariadb -uroot --password=$MYSQL_ROOT_PASSWORD -e "CREATE USER IF NOT EXISTS '$NOPOW_NAME'@'%' IDENTIFIED BY '$NOPOW_PASS';" 
-    -uroot --password=$MYSQL_ROOT_PASSWORD -e "GRANT SELECT ON $DATAB_NAME.* TO '$NOPOW_NAME'@'%';" 
+    mariadb -uroot --password=$MYSQL_ROOT_PASSWORD -e "GRANT SELECT ON $DATAB_NAME.* TO '$NOPOW_NAME'@'%';" 
     mariadb -uroot --password=$MYSQL_ROOT_PASSWORD -e "FLUSH PRIVILEGES;" 
     mysqladmin -uroot --password=$MYSQL_ROOT_PASSWORD shutdown 
     echo "Wordpress database created"
