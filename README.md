@@ -15,20 +15,20 @@ this project aims to teach about docker and docker compose
 - Best practices to write a Dockerfile
 
 **What is a container?** <br>
-A container as per its name cointain all we need, to run our application, it solves for exemple one of the problem in this famous meme. <br>
+A container as per its name contains all we need, to run our application, it solves for example the problem in this famous meme. <br>
 <img src="https://github.com/greedymelon/inception/blob/main/images/memes.jpeg" height="250"/><br>
 
-**Defferece between a container and a virtual machine** <br>
-The main difference is that the container use the Kernel of the hostmachine that is why is so light and fast, you skip a big parte of the process while in Virtual machine you have to install the whole opereting system. Both can be isolated from the hostmachine and configure to use a specific amount of resurces. <br>
+**Differences between a container and a virtual machine** <br>
+The main difference is that the container uses the Kernel of the host machine which is why it is so light and fast, you skip a big part of the process while in a Virtual machine, you have to install the whole operating system. Both can be isolated from the hostmachine and configured to use a specific amount of resources. <br>
 
-**What is a image?** <br>
-An image is a blueprint, from it we can create multiple containers. We can run a image teken from the dockerhub, We can use a Dockerfile to create our own image (starting FROM scratch) or most commonly personalize an existing one to create our own. <br>
+**What is an image?** <br>
+An image is just a blueprint. From it we can create multiple containers. We can run an image taken from the dockerhub. We can use a Dockerfile to create our image (starting FROM scratch) or most commonly personalize an existing one to create our own. <br>
 
-**How the network between containers and host work** <br>
-There are different types of networking that we can use with docker, in this project we use just 2 of them
-The bridge network that act as a switch.
-Docker has a default brige network in which container are automatically connected to: use it is bad practice because we want isolation between applications or containers in an application. The best practice is to create our own bridge network (docker network create 'NAME') and connect our container when we run it to it (--network 'NAME') with creating our own network also comes with other avantages: it create a DSN with the name of the container, in this way container in the same network can comunicate with each other throw their name, we can attached and detached containers from the network when we want, and some other.s
-Port forwarding with the flag -p we can specify a port open to the outside world (-p 80:80) the default option is TCP <br>
+**How the network between containers and host works?** <br>
+There are different types of networking that we can use with docker. In this project, we use just 2 of them: <br>
+The bridge network: that work like a switch for the containers. 
+Docker has a default bridge network to which containers are automatically connected. Using it is a bad practice, because we want isolation between applications or containers in an application. The best practice is to create our own bridge network (docker network create 'NAME') and connect our container when we run it to it (--network 'NAME'). Creating our own network also comes with other advantages: it creates a DSN with the name of the containers assosieted to the IP. In this way containers in the same network can communicate with each other through their names. We can attached and detached containers from the network in any given moment. <br>
+Port forwarding open a port from the outside world. By adding the flag -p we can specify which port to open (-p 80:80). The default protocol is TCP. <br>
 
 **what is PID1 and a daemon** <br>
 PID1 is the process assosieted to the container, we want it to remain the main process bacause is the one in which signal are sent, if we run bash in a container for example, all the signal send to the container will be ignore the commun way. To solve this problem when we run a bash script as an ENTRYPOINT is to use execve at the of it so it will start the new process as PID1 and run the actual service with CMD so we will need to add at the end of our script 'exec "$@"' where $@ is the commandline argument in our case what is in CMD. 
