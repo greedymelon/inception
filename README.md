@@ -63,10 +63,11 @@ then we need to do some customizations:
 - fill the .env file:<br>
     change the values with your preferred one. Es: DATAB_NAME="Database_name" DATAB_NAME="WordPress"
 - in the nginx.conf modify "yourwebsite.com"
-- this project is meant to run on localhost, so to make it work correctly we have to add this line in the hosts file in our host machine
-  (substitute "yourwebsite.com" with your website's name)
-    127.0.0.1  "yourwebsite.com"
-  
+- this project is meant to run on localhost, so to make it work correctly we have to add this line in the hosts file in our host machine <br>
+  (substitute "yourwebsite.com" with your website's name) <br>
+    127.0.0.1  "yourwebsite.com" <br>
+The Makefile is meant only for Mac and linux host machine, the instruction to run it on windows are at the end of this section. <br>
+Using the Makefile on Linux or Mac <br>
 then ```make``` to build the images of the containers<br>
 ````
 make
@@ -75,9 +76,30 @@ then ```make up``` to create and start the container<br>
 ````
 make up
 ````
+Now if we open our browser at our website name, we will find our WordPress website <br>
+To stop and destroy our container: <br>
+````
+make down
+````
+<br>
 
-Now if we open our browser at our website name, we will find our WordPress website
+
+without Makefile on windows: <br>
+Move to the srcs directory and build the images<br>
+````
+cd srcs; docker compose build
+````
+then create and start the container <br>
+````
+docker compose up --detach
+````
+Now if we open our browser at our website name, we will find our WordPress website <br>
+To stop and destroy our container: <br>
+````
+docker compose down
+````
+
 
 ## **Troubleshooting**
-If you run this application on Windows remember to run the terminal (or the program you open this project with ex. VScode) as administrator. <br>
+If you run this application on Windows remember to run the terminal (or the program you open this project with ex. VScode) as administrator. We need aministrator's right also to modify the hosts file <br>
 Make sure that docker is running and is correctly install. <br>
