@@ -60,14 +60,14 @@ git clone https://github.com/greedymelon/inception.git
 then we need to do some customizations: 
 - change the PATH of our bind mount with the folder PATH in our machine.
     - In the docker-compose.yml and in the Makefile: modified "/your/folder/path" with the path of the folder
-- fill the .env file:
-    change the value with our prefered one. Es: DATAB_NAME="Database_name" DATAB_NAME="wordpress"
+- fill the .env file:<br>
+    change the values with your prefered one. Es: DATAB_NAME="Database_name" DATAB_NAME="WordPress"
 - in the nginx.conf modify "yourwebsite.com"
-- this project is meant to run on localhost so to make it works correctly we have to add this line in the hosts file in our hostmachine
+- this project is meant to run on localhost, so to make it work correctly we have to add this line in the hosts file in our host machine
   (substitute "yourwebsite.com" with you website name)
     127.0.0.1  "yourwebsite.com"
   
-then ```make``` the build the images of the containers<br>
+then ```make``` t0 build the images of the containers<br>
 ````
 make
 ````
@@ -76,4 +76,4 @@ then ```make up``` to create and start the container<br>
 make up
 ````
 
-Now if we open our browser at our website name we wil find our wordpress website
+Now if we open our browser at our website name, we will find our WordPress website
