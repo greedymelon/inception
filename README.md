@@ -68,7 +68,7 @@ then we need to do some customizations:
     127.0.0.1  "yourwebsite.com" <br><br>
 
 The Makefile is only meant for Mac and linux host machine, the instructions to run it on windows are at the end of this section. <br>
-Using the Makefile on Linux or Mac <br>
+**Using the Makefile on Linux or Mac** <br>
 then ```make``` to build the images of the containers<br>
 ````
 make
@@ -85,7 +85,7 @@ make down
 <br>
 
 
-without Makefile on windows: <br>
+**Without Makefile on windows:** <br>
 Move to the srcs directory and build the images<br>
 ````
 cd srcs; docker compose build
