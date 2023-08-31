@@ -49,7 +49,7 @@ Another thing that i find relevant is the WORKDIR that execute all the instructi
 
 ## **Structur of this application**
 How you can see in the following image, in this project we created 3 different conteiner two volume (bind mount) a personalize bridge-network and just a single port open to the outside.
-<img src="https://github.com/greedymelon/inception/blob/main/images/structure.png" /><br>
+<img src="https://github.com/greedymelon/inception/blob/main/images/structure.png" height="500" /><br>
 
 ## **How to run**
 clone this repository in your computer
