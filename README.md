@@ -6,7 +6,7 @@ this project aims to teach about docker and docker compose
 
 ## **Learning-points**
 - What is a container?
-- The defferences between a container and a virtual machine
+- The differences between a container and a virtual machine
 - What is an image?
 - How does the network between containers and the host work?
 - What is PID1 and a daemon?
