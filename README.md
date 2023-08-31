@@ -67,7 +67,7 @@ then we need to do some customizations:
   (substitute "yourwebsite.com" with your website's name)
     127.0.0.1  "yourwebsite.com"
   
-then ```make``` t0 build the images of the containers<br>
+then ```make``` to build the images of the containers<br>
 ````
 make
 ````
