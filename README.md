@@ -49,10 +49,9 @@ clone this repository in your computer
 git clone https://github.com/greedymelon/inception.git
 
 ```
-then we need to do some customization: 
+then we need to do some customizations: 
 - change the PATH of our bind mount with the folder PATH in our machine.
-    - In the docker-compose.yml: modified $DIR_PATH with the path of the folder
-    - In the Makefile: modified $BINDM with the path of the folder
+    - In the docker-compose.yml and in the Makefile: modified "/your/folder/path" with the path of the folder
 - fill the .env file:
     change the value with our prefered one. Es: DATAB_NAME="Database name" DATAB_NAME="wordpress"
 - this project is meant to run on localhost so to make it works correctly we have to add this line in the hosts file in our hostmachine
