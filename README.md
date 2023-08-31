@@ -22,7 +22,7 @@ A container as per its name contains all we need, to run our application, it sol
 The main difference is that the container uses the Kernel of the host machine which is why it is so light and fast, you skip a big part of the process while in a Virtual machine, you have to install the whole operating system. Both can be isolated from the hostmachine and configured to use a specific amount of resources. <br>
 
 **What is an image?** <br>
-AAn image is just a blueprint. From it, we can create multiple containers. We can run an image taken from the docker hub. We can use a Dockerfile to create our image (starting FROM scratch) or most commonly personalize an existing one to create our own. <br>
+An image is just a blueprint. From it, we can create multiple containers. We can run an image taken from the docker hub. We can use a Dockerfile to create our image (starting FROM scratch) or most commonly personalize an existing one to create our own. <br>
 
 **How does the network between containers and the host work?** <br>
 There are different types of networking that we can use with docker. In this project, we use just 2 of them: <br>
