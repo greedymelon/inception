@@ -77,7 +77,7 @@ then ```make up``` to create and start the container<br>
 ````
 make up
 ````
-Now if we open our browser at our website name, we will find our WordPress website <br>
+Now, if we open our browser at our website name with HTTPS, we will find our WordPress website. In case you receive a warning of not safe (this happen because the certificate in this project is not validated)  just ignore it. <br>
 To stop and destroy our container: <br>
 ````
 make down
@@ -94,7 +94,7 @@ then create and start the container <br>
 ````
 docker compose up --detach
 ````
-Now if we open our browser at our website name, we will find our WordPress website <br>
+Now, if we open our browser at our website name with HTTPS, we will find our WordPress website. In case you receive a warning of not safe (this happen because the certificate in this project is not validated)  just ignore it.<br>
 To stop and destroy our container: <br>
 ````
 docker compose down
@@ -103,4 +103,4 @@ docker compose down
 
 ## **Troubleshooting**
 If you run this application on Windows remember to run the terminal (or the program you open this project with ex. VScode) as administrator. We need aministrator's right also to modify the hosts file. <br>
-Make sure that docker is running and is correctly install. <br>
+Make sure that docker is running and is correctly installed. <br>
