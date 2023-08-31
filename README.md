@@ -102,5 +102,5 @@ docker compose down
 
 
 ## **Troubleshooting**
-If you run this application on Windows remember to run the terminal (or the program you open this project with ex. VScode) as administrator. We need aministrator's right also to modify the hosts file <br>
+If you run this application on Windows remember to run the terminal (or the program you open this project with ex. VScode) as administrator. We need aministrator's right also to modify the hosts file. <br>
 Make sure that docker is running and is correctly install. <br>
