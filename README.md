@@ -39,13 +39,17 @@ Volumes are storage space in which the content is hidden from the hostmachine an
 Bind mounts are just folder or file that are bind to the hostmachine's folder or file, when you change a file on you hostmachine is right away avaible to the container and viceversa.
 
 **What is docker compose?** <br>
-Docker compose is a tool that allow you to orchestarte containers. It uses a docker-compose.yml (or .yeml) file in which all the single part needed to run our application are all togheter, instead of creating a network and then connect our container (one at the time) to it everything is done automaticly. When we run a command of docker compose we need to specify which docker-compose.yml we are efering to or have it in the same directory: through docker compose we can see only thing related to our application, that is very handy when you have multiple apllication running at the same time. 
+Docker compose is a tool that allow you to orchestarte containers. It uses a docker-compose.yml (or .yeml) file in which all the single part needed to run our application are all togheter, instead of creating a network and then connect our container (one at the time) to it everything is done automaticly. When we run a command of docker compose we need to specify which docker-compose.yml we are efering to or have it in the same directory: through docker compose we can see only thing related to our application, that is very handy when you have multiple apllications running at the same time. In this project we run the docker compose command through a Makefile to make everithing even more smoothier.
 
 **Best practices to write a Dockerfile**
 The best practices are easly explained in the Docker documentatione, I will list some that I find relevant to this project. <br>
 A image has layer and everytimes you use one of these instruction a new layer is created:  RUN, COPY, ADD. This is important to keep in consideration becase a part from the image size we can have also some issue. everytimes we change or add one of this istraction all the instrunction after it are executed again, but not the one before, if we do RUN apt update and the RUN apt install we risc to have old packeges becase 'apt update' won't be executed again, this why we should alwais execute this two command together, and to make maintainance easier  write each packet in alfabetical order on a new line follow by a space and a '\' (to understand better you can just open a dockerfile on this project). <br>
 If we need to foword a port we should add EXPOSE with the numer of the port, this doesn't do anything (It doesn't open a port) but has a documentation porpose for whom can run our apllication.
 Another thing that i find relevant is the WORKDIR that execute all the instruction appening after it in the directori we write after it, using cd create confusion.
+
+## **Structur of this application**
+How you can see in the following image, in this project we created 3 different conteiner two volume (bind mount) a personalize bridge-network and just a single port open to the outside.
+<img src="https://github.com/greedymelon/inception/blob/main/images/structure.jpeg" /><br>
 
 ## **How to run**
 clone this repository in your computer
