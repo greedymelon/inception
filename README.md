@@ -52,12 +52,12 @@ As you can see in the following image, in this project, we had to create three d
 <img src="https://github.com/greedymelon/inception/blob/main/images/structure.png" height="500" /><br>
 
 ## **How to run**
-Clone this repository in your computer:
+1. Clone this repository in your computer:
 ```
 git clone https://github.com/greedymelon/inception.git
 
 ```
-Perform some customizations: 
+2. Perform some customizations: 
 - Change the PATH of our bind mount with the folder PATH in your machine.
   In the 'docker-compose.yml' and in the 'Makefile', replace "/your/folder/path" with the     actual path to your folder
 - Fill the .env file:<br>
@@ -68,7 +68,7 @@ Perform some customizations:
     127.0.0.1  "yourwebsite.com" <br><br>
 
 The Makefile is only meant for Mac and Linux host machines, the instructions to run it on Windows are at the end of this section. <br>
-**Using the Makefile on Linux or Mac** <br>
+3. **Using the Makefile on Linux or Mac** <br>
 then ```make``` to build the images of the containers<br>
 ````
 make
@@ -85,12 +85,12 @@ make down
 <br>
 
 
-**Without Makefile on Windows:** <br>
-Move to the 'srcs' directory and build the images<br>
+4.**Without Makefile on Windows:** <br>
+- Move to the 'srcs' directory and build the images<br>
 ````
 cd srcs; docker compose build
 ````
-then create and start the container <br>
+- Create and start the container <br>
 ````
 docker compose up --detach
 ````
