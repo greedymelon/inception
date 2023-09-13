@@ -52,18 +52,18 @@ As you can see in the following image, in this project, we had to create three d
 <img src="https://github.com/greedymelon/inception/blob/main/images/structure.png" height="500" /><br>
 
 ## **How to run**
-clone this repository in your computer
+Clone this repository in your computer:
 ```
 git clone https://github.com/greedymelon/inception.git
 
 ```
-then we need to do some customizations: 
-- change the PATH of our bind mount with the folder PATH in our machine.
-    - In the docker-compose.yml and in the Makefile: modified "/your/folder/path" with the path of the folder
-- fill the .env file:<br>
-    change the values with your preferred one. Es: DATAB_NAME="Database_name" DATAB_NAME="WordPress"
-- in the nginx.conf modify "yourwebsite.com"
-- this project is meant to run on localhost, so to make it work correctly we have to add this line in the hosts file in our host machine <br>
+Perform some customizations: 
+- Change the PATH of our bind mount with the folder PATH in your machine.
+  In the 'docker-compose.yml' and in the 'Makefile', replace "/your/folder/path" with the     actual path to your folder
+- Fill the .env file:<br>
+    change the values to your preference. Es: DATAB_NAME="Database_name" DATAB_NAME="WordPress"
+- in the 'nginx.conf' file, modify "yourwebsite.com" to your desired website name.
+- Since this project is meant to run on localhost, add this line in the hosts file in your host machine <br>
   (Substitute "yourwebsite.com" with your website's name) <br>
     127.0.0.1  "yourwebsite.com" <br><br>
 
@@ -77,7 +77,7 @@ then ```make up``` to create and start the container<br>
 ````
 make up
 ````
-Now, if we open our browser at our website name with HTTPS, we will find our WordPress website. In case you receive a warning of not being safe (this happens because the certificate in this project is not validated)  just ignore it. <br>
+Now, if you open your browser at your website name with HTTPS, you will find your WordPress website. In case you receive a warning of not being secure (this happens because the certificate in this project is not validated), just ignore it. <br>
 To stop and destroy our container: <br>
 ````
 make down
@@ -86,7 +86,7 @@ make down
 
 
 **Without Makefile on Windows:** <br>
-Move to the srcs directory and build the images<br>
+Move to the 'srcs' directory and build the images<br>
 ````
 cd srcs; docker compose build
 ````
@@ -94,13 +94,13 @@ then create and start the container <br>
 ````
 docker compose up --detach
 ````
-Now, if we open our browser at our website name with HTTPS, we will find our WordPress website. In case you receive a warning of not being safe (this happens because the certificate in this project is not validated)  just ignore it.<br>
-To stop and destroy our container: <br>
+Now, if you open your browser aty our website name with HTTPS, you will find your WordPress website. In case you receive a warning of not being secure (this happens because the certificate in this project is not validated), just ignore it.<br>
+- To stop and destroy our container: <br>
 ````
 docker compose down
 ````
 
 
 ## **Troubleshooting**
-If you run this application on Windows remember to run the terminal (or the program you open this project with ex. VScode) as administrator. We need the administrator's right also to modify the hosts file. <br>
-Make sure docker is running and correctly installed. <br>
+- If you run this application on Windows, remember to run the terminal (or the program you open this project with ex. VScode) as administrator. We need the administrator's right also to modify the hosts file. <br>
+- Make sure Docker is running and correctly installed. <br>
