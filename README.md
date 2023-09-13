@@ -26,9 +26,9 @@ An image is just a blueprint. From it, we can create multiple containers. We can
 
 **How does the network between containers and the host work?** <br>
 There are different types of networking that we can use with docker. In this project, we use just 2 of them: <br>
-The bridge network works like a switch for the containers. 
+- The bridge network works like a switch for the containers. 
 Docker has a default bridge network to which containers are automatically connected. Using it is a bad practice because we want isolation between applications or containers in an application. The best practice is to create our bridge network (docker network create 'NAME') and connect our container to it when we run it (--network 'NAME'). Creating our network also comes with other advantages: it creates a DSN with the name of the containers associated with the IP. In this way, containers in the same network can communicate with each other through their names, and we can attach and detach containers from the network at any given moment.. <br>
-Port forwarding opens a port to the outside world. By adding the flag -p, we can specify which port to open (-p 80:80). The default protocol is TCP. <br>
+- Port forwarding opens a port to the outside world. By adding the flag -p, we can specify which port to open (-p 80:80). The default protocol is TCP. <br>
 
 **What is PID1 and a daemon?** <br>
 PID1 is the process associated with the container. We want it to remain the main process because is the one in which signals are sent. If we run bash in a container, for example, all the signals sent to the container will be ignored. To solve this problem when we run a bash/sh script as an ENTRYPOINT, we need to execute execve with our service at the end of it. In this way, we will start a new process for it that has PID1. This is not the best practice for a Dockerfile; we should write the running service as a CMD instruction (ex. CMD ["mariadb-safe"]),  and add at the end of our script 'exec "$@"' where $@ is the command line argument(in our case the command in CMD). <br>
