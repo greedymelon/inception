@@ -55,7 +55,6 @@ As you can see in the following image, in this project, we had to create three d
 1. Clone this repository in your computer:
 ```
 git clone https://github.com/greedymelon/inception.git
-
 ```
 2. Perform some customizations: 
 - Change the PATH of our bind mount with the folder PATH in your machine.
