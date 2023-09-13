@@ -60,11 +60,18 @@ git clone https://github.com/greedymelon/inception.git
 - Change the PATH of our bind mount with the folder PATH in your machine.
   In the 'docker-compose.yml' and in the 'Makefile', replace "/your/folder/path" with the     actual path to your folder
 - Fill the .env file:<br>
-    change the values to your preference. Es: DATAB_NAME="Database_name" DATAB_NAME="WordPress"
+    change the values to your preference.
+    for example:
+    ```
+    DATAB_NAME="Database_name"
+    DATAB_NAME="WordPress"
+    ```
 - in the 'nginx.conf' file, modify "yourwebsite.com" to your desired website name.
 - Since this project is meant to run on localhost, add this line in the hosts file in your host machine <br>
   (Substitute "yourwebsite.com" with your website's name) <br>
-    127.0.0.1  "yourwebsite.com" <br><br>
+  ```
+  127.0.0.1  "yourwebsite.com"
+  ```
 
 The Makefile is only meant for Mac and Linux host machines, the instructions to run it on Windows are at the end of this section. <br>
 3. **Using the Makefile on Linux or Mac** <br>
